@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  div.w3-container
+    h2.w3-text-blue Contrato #{contrato.idcontrato}
+    div.w3-card
+      table.w3-table.w3-bordered
+        tr
+          th ID Contrato
+          td= contrato.idcontrato
+        tr
+          th Objeto Contrato
+          td= contrato.objectoContrato
+        tr
+          th Data Celebração Contrato
+          td= contrato.dataCelebracaoContrato
+        tr
+          th Preço Contratual
+          td= contrato.precoContratual
+        tr
+          th NIPC Entidade Comunicante
+          td
+            a(href=`/entidade/${contrato.NIPC_entidade_comunicante}`)= contrato.NIPC_entidade_comunicante
+        tr
+          th Entidade Comunicante
+          td= contrato.entidade_comunicante
+    a.w3-button.w3-blue(href='/') Voltar à página principal

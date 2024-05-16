@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  div.w3-container
+    h2.w3-text-blue Entidade #{entidade}
+    p= nome
+    h3 Contratos
+    div.w3-responsive
+      table.w3-table.w3-bordered.w3-striped
+        thead
+          tr.w3-light-grey
+            th ID Contrato
+            th Objeto Contrato
+            th Data Celebração Contrato
+            th Preço Contratual
+        tbody
+          each contrato in contratos
+            tr
+              td
+                a(href=`/contrato/${contrato._id}`)= contrato._id
+              td= contrato.objectoContrato
+              td= contrato.dataCelebracaoContrato
+              td= contrato.precoContratual
+    h3 Total do valor dos contratos: #{total}
+    a.w3-button.w3-blue(href='/') Voltar à página principal
