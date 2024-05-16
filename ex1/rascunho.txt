@@ -1,0 +1,43 @@
+Para o csv contratos2024.csv
+
+docker run -d -p 27017:27017 --name contratos mongo
+1.1 Setup [1val.]
+Realiza as seguintes tarefas sem alterares os nomes da base de dados e coleção fornecidos:
+Analisa o dataset fornecido;
+Introduz as alterações que achares necessárias no dataset;
+Importa-o numa base de dados em MongoDB com os seguintes parâmetros:
+database: -d contratos
+collection: -c contratos
+Testa se a importação correu bem.
+
+
+mongoimport --db contratos --collection contratos --type csv --headerline --file contratos2024.csv
+
+1.2 Queries (warm-up) [0.5+0.5+1+1+1 = 4val.]
+Especifica queries em MongoDB para responder às seguintes questões:
+. Quantos registos estão na base de dados;
+. Quantos registos de contratos têm o tipo de procedimento com valor "Ajuste Direto Regime Geral"?
+. Qual a lista de entidades comunicantes (ordenada alfabeticamente e sem repetições)?
+. Qual a distribuição de contratos por tipo de procedimento (quantos contratos tem cada tipo de
+procedimento)?
+. Qual o montante global por entidade comunicante (somatório dos contratos associados a uma
+entidade)?
+Regista estas queries num ficheiro de texto que deverás colocar na pasta ex1 chamado
+queries.txt.
+
+db.contratos.count()
+
+2.
+db.contratos.countDocuments({ "tipoprocedimento": "Ajuste Direto Regime Geral" })
+
+3.
+db.contratos.distinct("entidade_comunicante").sort()
+
+4.
+db.contratos.aggregate([{"$group": {"_id": "$tipoprocedimento", "count": {"$sum": 1}}}])
+
+5.
+db.contratos.aggregate([{"$group": {"_id": "$entidade_comunicante", "montante": {"$sum": "$precocontratual"}}}])
+
+show headers of collection
+db.contratos.findOne()
