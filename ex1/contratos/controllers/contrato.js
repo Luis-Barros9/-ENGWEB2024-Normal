@@ -15,28 +15,29 @@ module.exports.findById = id => {
 
 module.exports.findByEntidade = entidade => {
     return Contrato
-        .find({_entidade_comunicante : entidade})
+        .find({NIPC_entidade_comunicante : entidade})
         .exec()
 }
 
 module.exports.findByTipoProcedimento = tipo => {
     return Contrato
-        .find({_tipoProcedimento : tipo})
+        .find({tipoprocedimento : tipo})
         .exec()
 }
 
 module.exports.listEntidades = () => {
     return Contrato
-        .distinct("_entidade_comunicante")
+        .distinct("entidade_comunicante")
         .sort()
         .exec()
 }
 
 module.exports.listTipos = () => {
+    // obterm todoso os valores únicos do campo tipoprocedimento
     return Contrato
-        .distinct("_tipoProcedimento")
-        .sort()
+        .distinct("tipoprocedimento")
         .exec()
+
 }
 
 module.exports.insert = p => {

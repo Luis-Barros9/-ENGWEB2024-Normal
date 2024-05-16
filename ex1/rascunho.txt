@@ -1,6 +1,6 @@
 Para o csv contratos2024.csv
 
-docker run -d -p 27017:27017 --name contratos mongo
+
 1.1 Setup [1val.]
 Realiza as seguintes tarefas sem alterares os nomes da base de dados e coleção fornecidos:
 Analisa o dataset fornecido;
@@ -9,9 +9,6 @@ Importa-o numa base de dados em MongoDB com os seguintes parâmetros:
 database: -d contratos
 collection: -c contratos
 Testa se a importação correu bem.
-
-
-mongoimport --db contratos --collection contratos --type csv --headerline --file contratos2024.csv
 
 1.2 Queries (warm-up) [0.5+0.5+1+1+1 = 4val.]
 Especifica queries em MongoDB para responder às seguintes questões:
@@ -37,7 +34,7 @@ db.contratos.distinct("entidade_comunicante").sort()
 db.contratos.aggregate([{"$group": {"_id": "$tipoprocedimento", "count": {"$sum": 1}}}])
 
 5.
-db.contratos.aggregate([{"$group": {"_id": "$entidade_comunicante", "montante": {"$sum": "$precocontratual"}}}])
+db.contratos.aggregate([{"$group": {"_id": "$entidade_comunicante", "montante": {"$sum": "$precoContratual"}}}])
 
 show headers of collection
 db.contratos.findOne()
